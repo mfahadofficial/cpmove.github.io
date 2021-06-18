@@ -1,0 +1,410 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+#progressContainer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    float: left;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#progressContainer progress {
+    font-family: 'apercu-regular';
+    font-size: 18px;
+}
+
+progress {
+    height: 15px;
+    border: 0px none;
+    background-color: #d5d5d5;
+    color: red;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #d5d5d5;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4558ff;
+}
+
+progress::-moz-progress-bar {
+    background-color: #4558ff;
+}
+
+
+/*Sign CSS */
+
+#insert {
+    width: 100%;
+    position: relative;
+    float: left;
+    padding: 15px;
+}
+
+#insert .sign-block {
+    /*background: white;*/
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    padding-bottom: 25%;
+    height: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-size: cover;
+    vertical-align: top;
+}
+
+#insert img {
+    position: absolute;
+    width: 100%;
+}
+
+#insert .sign-block img:nth-of-type(2),
+#insert .sign-block img:nth-of-type(6),
+#insert .sign-block img:nth-of-type(10),
+#insert .sign-block img:nth-of-type(14) {
+    transform: rotate(90deg)
+}
+
+#insert .sign-block img:nth-of-type(3),
+#insert .sign-block img:nth-of-type(7),
+#insert .sign-block img:nth-of-type(11),
+#insert .sign-block img:nth-of-type(15) {
+    transform: rotate(180deg)
+}
+
+#insert .sign-block img:nth-of-type(4),
+#insert .sign-block img:nth-of-type(8),
+#insert .sign-block img:nth-of-type(12),
+#insert .sign-block img:nth-of-type(16) {
+    transform: rotate(270deg)
+}
+
+@font-face {
+    font-family: 'apercu-regular';
+    src: url('../fonts/apercu-regular.eot');
+    src: url('../fonts/apercu-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/apercu-regular.woff') format('woff'), url('../fonts/apercu-regular.woff2') format('woff2'), url('../fonts/apercu-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'raisonne-demibold';
+    src: url('../fonts/raisonne-demibold.eot');
+    src: url('../fonts/raisonne-demibold.eot?#iefix') format('embedded-opentype'), url('../fonts/raisonne-demibold.woff') format('woff'), url('../fonts/raisonne-demibold.woff2') format('woff2'), url('../fonts/raisonne-demibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.main-header {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 44px 50px;
+}
+
+.navbar-toggler {
+    float: left;
+    height: 61px;
+    margin-right: 78px;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.modal-close {
+    float: left;
+    height: 61px;
+    width: 52px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-right: 78px;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    left: 50px;
+    top: 42px;
+    z-index: 99;
+}
+
+.navbar-toggler-icon {
+    cursor: pointer;
+    position: relative;
+}
+
+.navbar-toggler-icon,
+.modal-close,
+.export-to-pdf__link {
+    transition: all .4s;
+}
+
+.navbar-toggler-icon:hover,
+.modal-close:hover,
+.export-to-pdf__link:hover {
+    opacity: .7;
+}
+
+.form-group-type {
+    float: left;
+    margin-right: 45px;
+}
+
+.form-group-type__input {
+    float: left;
+    height: 61px;
+    width: 473px;
+    border: 3px solid #4558ff;
+    font-size: 0.9375rem;
+    color: #4558ff;
+    padding: 20px 15px 10px 15px;
+    outline: none;
+    box-shadow: none;
+    font-family: 'apercu-regular';
+    resize: none;
+}
+
+.form-group-type__input::-webkit-input-placeholder {
+    color: rgba(69, 88, 255, .5);
+}
+
+.form-group-type__input::-moz-placeholder {
+    color: rgba(69, 88, 255, .5);
+}
+
+.form-group-type__input:-ms-input-placeholder {
+    color: rgba(69, 88, 255, .5);
+}
+
+.form-group-type__input:-moz-placeholder {
+    color: rgba(69, 88, 255, .5);
+}
+
+.create-your-own {
+    float: left;
+}
+
+.create-your-own__head {
+    float: left;
+    font-family: 'raisonne-demibold';
+    color: #4558ff;
+    line-height: 1.24;
+    font-size: 24px;
+    margin: 2px 0 0 0;
+}
+
+.export-to-pdf {
+    float: right;
+}
+
+.export-to-pdf__link {
+    font-size: 24px;
+    font-family: 'raisonne-demibold';
+    color: #4558ff;
+    float: left;
+    text-decoration: none;
+    outline: none;
+    line-height: 1.24;
+    margin: 2px 0 0 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+    background: #4558ff;
+    padding: 44px 0px;
+}
+
+.modal.active {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modal__inner {
+    float: left;
+    width: 100%;
+}
+
+.modal__main-head {
+    float: left;
+    width: 100%;
+    font-size: 85px;
+    color: #fff;
+    font-family: 'raisonne-demibold';
+    line-height: 1.2;
+    margin: -12px 0 55px 0;
+}
+
+.modal__inner p {
+    font-size: 48px;
+    color: #fff;
+    float: left;
+    width: 100%;
+    font-family: 'apercu-regular';
+    margin: 0 0 70px 0;
+    line-height: 1.22;
+}
+.modal-data-section{
+    position: relative;
+    width:80%;
+    float: left;
+    padding-left:169px;
+    padding-right:169px;
+}
+.image-fluid-wrap{
+    position: relative;
+    float: left;
+    width:100%;
+    padding:50px 0px 50px 169px;
+    margin-bottom: 50px;
+    background-color: #fff;
+
+}
+.image-fluid-wrap img{
+    max-width: 100%;
+}
+.small-p{
+    font-size: 35px !important;
+    margin-top:40px !important;
+}
+@media (max-width: 1400px) {
+    .create-your-own__head, .export-to-pdf__link {
+        margin: 7px 0 0 0;
+    }
+    .navbar-toggler {
+        margin-right: 30px;
+    }
+    .main-header {
+        padding: 30px 30px;
+    }
+    .form-group-type {
+        margin-right: 30px;
+    }
+    .export-to-pdf__link {
+        font-size: 20px;
+    }
+    .create-your-own__head {
+        font-size: 20px;
+    }
+    .modal__main-head {
+        font-size: 65px;
+        margin-bottom: 35px;
+    }
+    .modal__inner p {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .form-group-type {
+        width: 100%;
+        margin-right: 0;
+    }
+    .form-group-type__input {
+        width: 100%;
+    }
+    .main-header {
+        padding: 15px 15px;
+    }
+    .create-your-own {
+        max-width: 80%;
+    }
+    .export-to-pdf {
+        max-width: 20%;
+    }
+    .export-to-pdf__link {
+        font-size: 15px;
+    }
+    .create-your-own__head {
+        font-size: 15px;
+    }
+    .modal__main-head {
+        font-size: 45px;
+        margin-bottom: 25px;
+    }
+    .modal__inner p {
+        font-size: 28px;
+    }
+    .modal__inner {
+        width: 100%;
+    }
+    .modal__main-head{
+        margin-top:0;
+    }
+    .modal-data-section{
+        width: 100%;
+    }
+    .small-p{
+        font-size: 20px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .modal__inner p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .modal-data-section{
+        padding-left:15px;
+        padding-right:15px;
+    }
+    .modal-close{
+        position: relative;
+        top:0;
+        left:15px;
+    }
+    .image-fluid-wrap{
+        padding-left:15px;
+        padding-right:15px;
+    }
+}
+
+@media (max-width: 575.98px) {}
+
+@media print {
+    #progressContainer,
+    .main-header {
+        display: none;
+    }
+    * {
+        -webkit-print-color-adjust: exact !important;
+        /* Chrome, Safari */
+        color-adjust: exact !important;
+        /*Firefox*/
+    }
+}

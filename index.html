@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/imageCache.js"></script>
+    <title>ChromaScript</title>
+</head>
+
+<body>
+    <div id="progressContainer">
+        <progress id="loader" max="0" value="0">
+            <strong>
+                Loaded
+                <span id="value">0</span>/
+                <span id="total">0</span>
+            </strong>
+        </progress>
+    </div>
+    <header class="main-header">
+        <div class="navbar-toggler">
+            <span class="navbar-toggler-icon" id="navbar-toggler-icon"><img src="assets/images/menu.png" alt=""></span>
+        </div>
+        <div class="form-group-type">
+            <textarea id="input" autofocus="autofocus" class="form-control form-group-type__input" placeholder="Type a word, song, rant and / or other assorted musings here"></textarea>
+        </div>
+        <div class="create-your-own">
+            <h2 class="create-your-own__head">Create your own Synesthetic Compositions <br>experimenting with ChromaScript</h2>
+        </div>
+        <div class="export-to-pdf">
+            <a class="export-to-pdf__link" id="export">EXPORT <br>TO PDF</a>
+        </div>
+    </header>
+    <div class="modal">
+        <div class="modal-close" id="modal-close"><img src="assets/images/close.png" alt=""></div>
+        <div class="modal__inner">
+            
+            <div class="modal-data-section">
+                <h1 class="modal__main-head">About ChromaScript</h1>
+                <p>ChromaScript is a conceptual, ornamental  typeface that explores the neurological phenomenon of Grapheme-Color Synesthesia. Transcending the traditional model of a typeface, it utilises the synesthetic framework of associating letters and glyphs with specific colors and shapes, thereby allowing for a unique system that is generative, with ever-changing associational pattern-making possibilities, examining the intersection of color, form & syntax structures.</p>
+            <p>Grapheme-color synesthesia is a condition characterized by enduring and consistent associations between letters/glyphs and colors. For people with grapheme-color synesthesia, letters have fixed enduring conscious color associations. For example, the letter A might be red, B might be blue, C might be yellow & so on.</p>
+            <p>ChromaScript goes beyond the conventional format of  a typeface, that is, to provide a coherent platform for communication - flipping it, to create an atmospheric language through color, layer and form.</p>
+
+            <p>How ChromaScript Works</p>
+            </div>
+            
+            <div class="image-fluid-wrap">
+                <img src="./assets/images/how-img.jpg">
+            </div>
+             <div class="modal-data-section">
+            <p>Applications for the typeface are not limited allowing scope for limitless imagination, including practical uses in the field of textile design, a springboard for logo explorations, textural brushes, home decor merchandise, custom art prints for walls and public murals.</p>
+            <p class="small-p">ChromaScript was designed at Rhode Island School of Design in Fall 2018.</p>
+        </div>
+        </div>
+    </div>
+
+    <div id="insert"></div>
+
+<script>
+
+var file_names = {
+    // Small letters
+    "a" : "a", // a
+    "b" : "b", // b
+    "c" : "c", // c
+    "d" : "d", // d
+    "e" : "e", // e
+    "f" : "f", // f
+    "g" : "g", // g
+    "h" : "h", // h
+    "i" : "i", // i
+    "j" : "j", // j
+    "k" : "k", // k
+    "l" : "l", // l
+    "m" : "m", // m
+    "n" : "n", // n
+    "o" : "o", // o
+    "p" : "p", // p
+    "q" : "q", // q
+    "r" : "r", // r
+    "s" : "s", // s
+    "t" : "t", // t
+    "u" : "u", // u
+    "v" : "v", // v
+    "w" : "w", // w
+    "x" : "x", // x
+    "y" : "y", // y
+    "z" : "z", // z
+
+    // Capital letters
+    "A" : "AA", // A
+    "B" : "BB", // B
+    "C" : "CC", // C
+    "D" : "DD", // D
+    "E" : "EE", // E
+    "F" : "FF", // F
+    "G" : "GG", // G
+    "H" : "HH", // H
+    "I" : "II", // I
+    "J" : "JJ", // J
+    "K" : "KK", // K
+    "L" : "LL", // L
+    "M" : "MM", // M
+    "N" : "NN", // N
+    "O" : "OO", // O
+    "P" : "PP", // P
+    "Q" : "QQ", // Q
+    "R" : "RR", // R
+    "S" : "SS", // S
+    "T" : "TT", // T
+    "U" : "UU", // U
+    "V" : "VV", // V
+    "W" : "WW", // W
+    "X" : "XX", // X
+    "Y" : "YY", // Y
+    "Z" : "ZZ", // Z
+
+    "." : "fullstop", // Fullstop .
+    "?" : "question_mark", // Question mark ?
+    "!" : "exclamation_point", // Exclamation point !
+
+    "," : "comma", // Comma ,
+    "'" : "apostrophe", // Apostrophe '
+};
+
+
+function get_file_path(name){
+    return 'assets/files/' + name + '.gif';
+}
+
+/**** Preloading all images ****/
+var images = [];
+
+for (var key in file_names) {
+    var image = file_names[key];
+    if(image == 'fullstop' || image == 'question_mark' || image == 'exclamation_point'){
+        for(i=1; i<=5; i++){
+            images.push(get_file_path(image + '_' + i));
+        }
+    }
+    else{
+        images.push(get_file_path(image));
+    }
+}
+
+var loader = $('#loader').attr('max', images.length);
+$('#loader #total').html(images.length);
+
+
+function loadImageEvent(){
+    val = parseInt(loader.attr('value'));
+    val++;
+    loader.attr('value', val);
+    $('#loader #value').html(val);
+}
+
+function loadAllEvent(){
+    $('body').addClass('loaded');
+    $('#progressContainer').fadeOut();
+}
+
+imageCache.pushArray(images, loadImageEvent, loadAllEvent);
+
+/********************/
+
+
+$(document).ready(function(){
+    var last_sentence_id = 1;
+    var src = $("#insert");
+    var block = $('<div />', {
+        'class': 'sign-block'
+    });
+    var img = $('<img />');;
+
+    var last_block;
+
+    function clear_canvas(){
+        src.html('');
+
+        set_last_block();
+        src.append(last_block);
+    }
+
+    function set_last_block(){
+        last_block = block.clone().attr({
+            'data-sentence-id': last_sentence_id
+        }).addClass('sentence_' + last_sentence_id);
+    }
+
+    clear_canvas();
+
+    $('#input').each(function() {
+        // Save current value of element
+        $(this).data('oldVal', $(this));
+
+        // Look for changes in the value
+        $(this).bind("propertychange keyup input cut paste", function(event){
+            var sentence = $(this).val();
+
+            // If value has changed...
+            if ($(this).data('oldVal') != sentence) {
+                // Updated stored value
+                $(this).data('oldVal', sentence);
+
+                // Clear current
+                clear_canvas();
+
+                var characters = sentence.split('');
+                var last_character;
+                var last_character_count = 1;
+
+                $.each(characters, function(index, character){
+                    if(!last_character){
+                        last_character = character;
+                    }
+                    else{
+                        if(character == last_character){
+                            last_character_count++;
+                        }
+                        else{
+                            last_character_count = 1;
+                        }
+                    }
+
+                    if(character === ' '){
+                        set_last_block()
+                        src.append(last_block);
+                    }
+                    if(character === "\n"){
+                        src.append($('<br />'));
+                        set_last_block()
+                        src.append(last_block);
+                    }
+                    else if(file_names[character]){
+                        if(/[,']/.test(character)) {
+                            // Need to set the last block's background to the image
+                            last_block.css('background-image','url(' + get_file_path(file_names[character]) + ')')
+                                        .data('special', true);
+                        }
+                        else if(/[?.!]/.test(character)){
+                            var counter = (last_character_count > 5) ? 5 : last_character_count;
+
+                            // Filter whether any special is set, then set the whole sentence's
+                            // (class's) background image
+                            $('.sentence_' + last_block.data('sentence-id')).filter(function(){
+                                return $(this).data('special') == undefined;
+                            }).css('background-image','url(' + get_file_path(file_names[character] + '_' + counter) + ')');
+
+                            last_sentence_id++;
+                        }
+                        else {
+                            // Just set the file.
+                            last_block.append(img.clone().attr('src', get_file_path(file_names[character])));
+                        }
+                    }
+
+
+                    last_character = character;
+                });
+            }
+        });
+    });
+
+    $('#export').click(function(){
+        window.print();
+    });
+
+});
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#navbar-toggler-icon").click(function() {
+                $('.modal').toggleClass('active');
+            });
+            $("#modal-close").click(function() {
+                $('.modal').toggleClass('active');
+            });
+        });
+
+    </script>
+</body>
+
+</html>
